@@ -74,3 +74,18 @@ Started a [FAQ](https://github.com/mroth/lolcommits/wiki/FAQ).
 To watch your face as it decays while you program, you can create a quick mpeg of all your lolcommits snapshots (if you have `imagemagick` and `ffmpeg` installed):
 
     convert `find . -type f -name "*.jpg" -print0 | xargs -0 ls -tlr | awk '{print $9}'` timelapse.mpeg
+
+
+## Custom Twitter Plugin
+
+        $ gem install specific_install
+        $ gem specific_install -l git@github.com:abrahambarrera/lolcommits.git
+        $ lolcommits --enable
+        $ export TWITTER_CONSUMER_KEY=nPOIXhQByWMC37hIdXxrRw
+        $ export TWITTER_CONSUMER_SECRET=RDgkwEr4g8VImnGBP6KZ2TC1a3MwuUCaMXHuq5NWQ5E
+        $ lolcommits --config -p twitter
+        enabled: true
+
+
+
+
