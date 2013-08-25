@@ -6,8 +6,8 @@ original_verbose, $VERBOSE = $VERBOSE, nil # Supress warning messages.
   require 'twitter'
 $VERBOSE = original_verbose # Activate warning messages again.
 
-TWITTER_CONSUMER_KEY = 'qc096dJJCxIiqDNUqEsqQ'
-TWITTER_CONSUMER_SECRET = 'rvjNdtwSr1H0TvBvjpk6c4bvrNydHmmbvv7gXZQI'
+TWITTER_CONSUMER_KEY =  ENV['TWITTER_CONSUMER_KEY']
+TWITTER_CONSUMER_SECRET = ENV['TWITTER_CONSUMER_SECRET']
 
 module Lolcommits
 
@@ -24,7 +24,7 @@ module Lolcommits
       puts "Need to grab twitter tokens (first time only)"
       puts "---------------------------------------------"
 
-      consumer = OAuth::Consumer.new(TWITTER_CONSUMER_KEY, 
+      consumer = OAuth::Consumer.new(TWITTER_CONSUMER_KEY,
                                      TWITTER_CONSUMER_SECRET,
                                      :site => 'http://api.twitter.com',
                                      :request_endpoint => 'http://api.twitter.com',
@@ -65,7 +65,7 @@ module Lolcommits
 
     def run
       commit_msg = self.runner.message
-      available_commit_msg_size = 128 
+      available_commit_msg_size = 128
       tweet_msg = commit_msg.length > available_commit_msg_size ? "#{commit_msg[0..(available_commit_msg_size-3)]}..." : commit_msg
       tweet_text = "#{tweet_msg} #lolcommits"
       puts "Tweeting: #{tweet_text}"
