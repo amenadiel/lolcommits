@@ -86,6 +86,7 @@ To watch your face as it decays while you program, you can create a quick mpeg o
         $ lolcommits --config -p twitter
         enabled: true
 
+        First commit needs to open link and add pin
 
 
 
