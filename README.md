@@ -83,6 +83,8 @@ To watch your face as it decays while you program, you can create a quick mpeg o
         $ lolcommits --enable
         $ export TWITTER_CONSUMER_KEY=nPOIXhQByWMC37hIdXxrRw
         $ export TWITTER_CONSUMER_SECRET=RDgkwEr4g8VImnGBP6KZ2TC1a3MwuUCaMXHuq5NWQ5E
+        $ export TWITTER_ACCESS_TOKEN=1698071059-fvCKJb7p4vN8QEKSIpWJO2rPY5VSZSA0JYFy1xm
+        $ export TWITTER_ACCESS_SECREET=BAcGYzd5YoUM4vr53utwrYp4OszCwpnk1mVRLMFZKw
         $ lolcommits --config -p twitter
         enabled: true
 
