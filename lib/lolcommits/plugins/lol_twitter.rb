@@ -20,47 +20,52 @@ module Lolcommits
     end
 
     def initial_twitter_auth
-      puts "\n--------------------------------------------"
-      puts "Need to grab twitter tokens (first time only)"
-      puts "---------------------------------------------"
+      access_token_token = ENV['TWITTER_ACCESS_TOKEN']
+      access_token_secreet = ENV['TWITTER_ACCESS_SECREET']
+      if !access_token_token.present? || !access_token_secreet.present?
+        puts "\n--------------------------------------------"
+        puts "Need to grab twitter tokens (first time only)"
+        puts "---------------------------------------------"
 
-      consumer = OAuth::Consumer.new(TWITTER_CONSUMER_KEY,
-                                     TWITTER_CONSUMER_SECRET,
-                                     :site => 'http://api.twitter.com',
-                                     :request_endpoint => 'http://api.twitter.com',
-                                     :sign_in => true)
+        consumer = OAuth::Consumer.new(TWITTER_CONSUMER_KEY,
+                                       TWITTER_CONSUMER_SECRET,
+                                       :site => 'http://api.twitter.com',
+                                       :request_endpoint => 'http://api.twitter.com',
+                                       :sign_in => true)
 
-      request_token = consumer.get_request_token
-      rtoken  = request_token.token
-      rsecret = request_token.secret
+        request_token = consumer.get_request_token
+        rtoken  = request_token.token
+        rsecret = request_token.secret
 
-      puts "\n1.) Open the following url in your browser, get the PIN:\n\n"
-      puts request_token.authorize_url
-      puts "\n2.) Enter PIN, then press enter:"
+        puts "\n1.) Open the following url in your browser, get the PIN:\n\n"
+        puts request_token.authorize_url
+        puts "\n2.) Enter PIN, then press enter:"
 
-      begin
-        STDOUT.flush
-        twitter_pin = STDIN.gets.chomp
-      rescue
+        begin
+          STDOUT.flush
+          twitter_pin = STDIN.gets.chomp
+        rescue
+        end
+
+        if (twitter_pin.nil?) || (twitter_pin.length == 0)
+          puts "\n\tERROR: Could not read PIN, auth fail"
+          return
+        end
+
+        begin
+          OAuth::RequestToken.new(consumer, rtoken, rsecret)
+          access_token = request_token.get_access_token(:oauth_verifier => twitter_pin)
+        rescue Twitter::Unauthorized
+          puts "> FAIL!"
+          return
+        end
+        access_token_token = access_token.token
+        access_token_secreet = access_token.secret
       end
-
-      if (twitter_pin.nil?) || (twitter_pin.length == 0)
-        puts "\n\tERROR: Could not read PIN, auth fail"
-        return
-      end
-
-      begin
-        OAuth::RequestToken.new(consumer, rtoken, rsecret)
-        access_token = request_token.get_access_token(:oauth_verifier => twitter_pin)
-      rescue Twitter::Unauthorized
-        puts "> FAIL!"
-        return
-      end
-
       # saves the config back to yaml file.
       self.runner.config.do_configure!('twitter', { 'enabled'      => true,
-                                                    'access_token' => access_token.token,
-                                                    'secret'       => access_token.secret })
+                                                    'access_token' => access_token_token,
+                                                    'secret'       => access_token_secreet })
     end
 
     def run
