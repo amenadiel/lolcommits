@@ -40,43 +40,8 @@ For more details, see [Installing on Linux](https://github.com/mroth/lolcommits/
 ### Windows
 Here be dragons! It all works but you'll need some more detailed instructions to get the dependencies installed.  See the wiki page for [Installing on Windows](https://github.com/mroth/lolcommits/wiki/Installing-on-Windows).
 
+
 ## Usage
-### Enabling and basic usage
-From within any git repository, simply do a `lolcommits --enable`. From that point on, any git commit will automatically trigger a lolcommit capture! All lolcommits are stored in `~/.lolcommits` by default, placed in a subdirectory by project name, and with a filename matching the commit hash.
-
-Don't worry about it too much, half the fun of lolcommits is forgetting it's installed!
-
-### Other commands
-Ok, if you insist... Since you know about `--enable`, common sense suggest there is also a repository specific `--disable`, hopefully you can guess what that does. Other handy common commands include `--last`, which will open for display your most recent lolcommit image, or `--browse`, which pops open the directory containing all the lolcommit images for your current repository. You can always do `--help` for a full list of available commands.
-
-### Configuration variables
-lolcommits has some options for additional lulz.  You can enable via
-environment variables.
-
- * Set webcam device on mac - set `LOLCOMMITS_DEVICE` environment variable.
- * Set delay persistently (for slow to warmup webcams) - set
-   `LOLCOMMITS_DELAY` var to time in seconds.
- * Set font file location - set `LOLCOMMITS_FONT` environment variable.
- * Fork lolcommits runner - set `LOLCOMMITS_FORK` environment variable
-   (causes capturing command to fork to a new process, speedily returning you to your terminal).
-
-For the full list, see the [configuration variables](https://github.com/mroth/lolcommits/wiki/Configuration-Variables).
-
-### Plugins
-
-There are a growing amount of plugins for lolcommits to enable things like Twitter upload, translating your commit messages to lolspeak, etc.  Check them out on the [plugins wiki page](https://github.com/mroth/lolcommits/wiki/Plugins).
-
-## Troubles?
-Started a [FAQ](https://github.com/mroth/lolcommits/wiki/FAQ).
-
-## Timelapse?
-
-To watch your face as it decays while you program, you can create a quick mpeg of all your lolcommits snapshots (if you have `imagemagick` and `ffmpeg` installed):
-
-    convert `find . -type f -name "*.jpg" -print0 | xargs -0 ls -tlr | awk '{print $9}'` timelapse.mpeg
-
-
-## Custom Twitter Plugin
 
         $ gem install specific_install
         $ gem specific_install -l git@github.com:abrahambarrera/lolcommits.git
