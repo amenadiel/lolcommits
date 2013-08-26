@@ -46,12 +46,13 @@ Here be dragons! It all works but you'll need some more detailed instructions to
         $ gem install specific_install
         $ gem specific_install -l git@github.com:abrahambarrera/lolcommits.git
         $ lolcommits --enable
-        $ export TWITTER_CONSUMER_KEY=nPOIXhQByWMC37hIdXxrRw
-        $ export TWITTER_CONSUMER_SECRET=RDgkwEr4g8VImnGBP6KZ2TC1a3MwuUCaMXHuq5NWQ5E
-        $ export TWITTER_ACCESS_TOKEN=1698071059-fvCKJb7p4vN8QEKSIpWJO2rPY5VSZSA0JYFy1xm
-        $ export TWITTER_ACCESS_SECREET=BAcGYzd5YoUM4vr53utwrYp4OszCwpnk1mVRLMFZKw
+        $ export TWITTER_CONSUMER_KEY=<consumer key>
+        $ export TWITTER_CONSUMER_SECRET=<consumer secreet>
+        $ export TWITTER_ACCESS_TOKEN=<access token>
+        $ export TWITTER_ACCESS_SECREET=<access secreet>
         $ lolcommits --config -p twitter
-        enabled: true
+
+        wait and respond with enabled: true
 
         First commit needs to open link and add pin
 
