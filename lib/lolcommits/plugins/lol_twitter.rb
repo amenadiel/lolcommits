@@ -22,7 +22,7 @@ module Lolcommits
     def initial_twitter_auth
       access_token_token = ENV['TWITTER_ACCESS_TOKEN']
       access_token_secreet = ENV['TWITTER_ACCESS_SECREET']
-      if !access_token_token.present? || !access_token_secreet.present?
+      if access_token_token.nil? || access_token_secreet.nil?
         puts "\n--------------------------------------------"
         puts "Need to grab twitter tokens (first time only)"
         puts "---------------------------------------------"
